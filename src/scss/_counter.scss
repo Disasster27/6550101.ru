@@ -1,0 +1,65 @@
+.counter {
+    height: 40px;
+    width: 67px;
+    display: inline-block;
+    border: 1px solid $borderGrey;
+    box-sizing: border-box;
+    &__input {
+        position: absolute;
+        text-align: center;
+        color: $addButtonGray;
+        font-size: 13px;
+        left: 0;
+        padding: 12px 0 11px;
+        width: 40px;
+        border: none;
+        border-right: 1px solid $borderGrey;
+    }
+    &__stepper {
+        height: 100%;
+        position: relative;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+    &__arrow {
+        cursor: pointer;
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        top: -1px;
+        width: 25px;
+        height: 40px;
+        display: flex;
+        flex-direction: column;
+
+       .up, .down {
+            text-align: center;
+            display: inline-block;
+            width: 25px;
+            border-top: 1px solid $borderGrey;
+            height: 50%;
+            &:hover {
+                background-color: $hoverGray;
+                color: $wite; 
+            }
+       }
+       .up {
+            background-image: url(../image/stepper-arrows.png);
+            background-position: bottom 20px right -1px;
+            &:hover {
+                background-image: url(../image/stepper-arrows.png);
+                background-position: bottom 20px right 26px; 
+            }
+       }
+       .down {
+            background-image: url(../image/stepper-arrows.png);
+            background-position: bottom 0px right -1px;
+            &:hover {
+                background-image: url(../image/stepper-arrows.png);
+                background-position: bottom 0px right 26px;
+                }
+       }
+    }
+}
