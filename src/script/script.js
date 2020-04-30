@@ -40,13 +40,24 @@ document.addEventListener( 'DOMContentLoaded', () => {
             return promise;
             
         };
-        render() {
+        render( products = this.allProducts ) {
             
             const block = document.querySelector( this.container );
-            for ( let key in  this.allProducts ) {
-                const productObj = new this.item[ this.constructor.name ](  this.allProducts[ key ] );
+            for ( let key in  products ) {
+                const productObj = new this.item[ this.constructor.name ](  products[ key ] );
                 block.insertAdjacentElement( 'beforeend', productObj.render() );
             };
+        };
+        filter( value ) {
+            const regexp = new RegExp(value, 'i');
+            // this.goods = this.allProducts.filter( product => regexp.test( product.title ) );
+            for ( let key in this.allProducts ) {
+                if ( regexp.test( this.allProducts[ key ].title ) ) {
+                    this.goods[ key ] = this.allProducts[ key ];
+                }
+            };
+            document.querySelector( `${ this.container }` ).innerHTML = '';
+            this.render( this.goods );
         };
         _init() {
             return false;
@@ -66,6 +77,10 @@ document.addEventListener( 'DOMContentLoaded', () => {
                     this.cart.addToCart( this.allProducts[event.target.dataset.productId] );
                 };
               });
+            document.querySelector( '.search__button' ).addEventListener( 'click', event => {
+                event.preventDefault(); 
+                this.filter( document.querySelector( '.search__input' ).value );
+              } )
         };
     };
 
